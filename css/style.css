@@ -1,0 +1,41 @@
+body, html{
+  margin : 0;
+  top: 0;
+  left: 0;
+}
+
+.box{
+  width: 100%;
+
+}
+
+.boxHeader{
+  padding : 20px;
+  width : 100%;
+  background-color: #26a69a;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+}
+
+.boxBody{
+  width : 100%;
+  padding: 10px;
+}
+
+.align{
+  text-align:center;
+}
+
+#messageErreur{
+  width : 100%;
+   background-color: darkred;
+   color: #fff;
+   padding: 10px; !important
+   position : relative;
+}
+
+#btnClose{
+  position: absolute;
+  right : 5px;
+}
