@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\maxime.jouassy\AndroidStudioProjects\TabascoAppli\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="C:\Users\maxime.jouassy\AndroidStudioProjects\TabascoAppli\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.4.0_01ce9dc8d900c84bc4a0e5428273119292afbcff\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\maxime.jouassy\AndroidStudioProjects\TabascoAppli\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="77fd06ef840d8d80d73899103fdad23005aa1c66">
+        <dex dex="C:\Users\maxime.jouassy\AndroidStudioProjects\TabascoAppli\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_767d14a5367bfbcc34c80b1fe2446733b3fe5363\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\maxime.jouassy\AndroidStudioProjects\TabascoAppli\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="C:\Users\maxime.jouassy\AndroidStudioProjects\TabascoAppli\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.4.0_36e870ed07709bc31bbdd6fe5bcf19624219f7d7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\maxime.jouassy\AndroidStudioProjects\TabascoAppli\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="7c4bbcfd8fe43174e3b303b3cc62138382bb21ba">
+        <dex dex="C:\Users\maxime.jouassy\AndroidStudioProjects\TabascoAppli\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_c9567a7690d6311b3e5028e1d65aabc75cdf6a5a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\maxime.jouassy\AndroidStudioProjects\TabascoAppli\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="C:\Users\maxime.jouassy\AndroidStudioProjects\TabascoAppli\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.4.0_99accf8befa7e048ad681482156f89cf68be7eaa\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\maxime.jouassy\AndroidStudioProjects\TabascoAppli\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="C:\Users\maxime.jouassy\AndroidStudioProjects\TabascoAppli\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.4.0_2488b66f08593d47dd9d2370ad6c2fbb53d86f8d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\maxime.jouassy\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="C:\Users\maxime.jouassy\AndroidStudioProjects\TabascoAppli\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_dce8b45d63e2fe5fe194d267d1032ccc60902515\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\maxime.jouassy\AndroidStudioProjects\TabascoAppli\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="C:\Users\maxime.jouassy\AndroidStudioProjects\TabascoAppli\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_0b865ae68c9322cba1ff001264b6525c5d1cd9ab\classes.dex" />
+    </item>
+
+</items>
