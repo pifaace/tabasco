@@ -1,7 +1,10 @@
 <?php
 session_start();
 try{
+  //$db = new PDO("mysql:host=localhost;dbname=tabasco;charset=utf8","root","root");
   $db = new PDO("mysql:host=localhost;dbname=gaubert_tabasco;charset=utf8","gaubert_test","testtestg4");
+
+
 }catch(PDOException  $e ){
 echo "Error: ".$e;
 }
@@ -49,6 +52,11 @@ echo "Error: ".$e;
     $query=$db->prepare($req);
     $query->execute();
     $reponses = $query->fetchAll();
+
+    $req = 'select * from reponse_valide WHERE id_question=' . $question['id'] . ' AND valide=1';
+    $query=$db->prepare($req);
+    $query->execute();
+    $reponseCorrect = $query->fetch();
     ?>
 
     <div class="boxQuestion" id="box<?= $question['id']; ?>">
@@ -75,13 +83,16 @@ echo "Error: ".$e;
                   <?php
                 }
                 ?>
+                <div class="row explication" id="explication<?= $question['id']; ?>"><br/><span id="bonneRep">Bonne réponse : <?= $reponseCorrect['libelle_reponse']; ?> </span><br/><br/><?= $question['explication']; ?></div>
                  <div class="row align">
                    <div class="input-field col s12">
-                     <input  type="submit" class="waves-effect waves-light btn" name="envoyer" id="envoyer" value="Valider"/>
+                     <input  type="submit" class="btn-large" name="envoyer" id="envoyer<?= $question['id']; ?>" value="Valider"/>
                    </div>
                  </div>
+
               </form>
             </div>
+
           </div>
     </div>
 
@@ -119,12 +130,10 @@ echo "Error: ".$e;
               $( "#erreur1" ).removeClass('success');
             }
             $( "#erreur1" ).show();
+            $("#explication1").show();
+            $("#envoyer1").addClass('disabled');
           });
-          setTimeout(function(){
-            $( "#erreur1" ).hide();
-            $('#box1').hide();
-            $('#overlay').hide();
-          }, 1000);
+
         });
 
 
@@ -146,12 +155,10 @@ echo "Error: ".$e;
               $( "#erreur2" ).removeClass('success');
             }
             $( "#erreur2" ).show();
+            $("#explication2").show();
+            $("#envoyer2").addClass('disabled');
           });
-          setTimeout(function(){
-            $( "#erreur2" ).hide();
-            $('#box2').hide();
-            $('#overlay').hide();
-          }, 1000);
+
         });
 
 

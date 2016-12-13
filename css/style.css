@@ -89,4 +89,17 @@ body, html{
 }
 
 .error{
-  background-color: darkred;}
+  background-color: darkred;
+}
+
+.explication{
+  display: none;
+}
+
+#bonneRep{
+  color: green;
+}
+
+label{
+  color : #000;
+}
