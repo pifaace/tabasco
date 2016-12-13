@@ -3,7 +3,7 @@
 	$login = $_POST['login'];
 	$pwd = $_POST['mdp'];
 try{
-	$db = new PDO("mysql:host=localhost;dbname=tabasco;charset=utf8","root","root");
+	$db = new PDO("mysql:host=https://tabasco-team.labo-g4.fr:2083;dbname=tabasco;charset=utf8","gaubert","841aZYTR2b");
 	}catch(PDOException  $e ){
 	echo "Error: ".$e;
 }
