@@ -2,11 +2,12 @@
 
 session_start();
 try{
-$db = new PDO("mysql:host=http://tabasco-team.labo-g4.fr:2083/cpsess8027652924/3rdparty/phpMyAdmin/index.php#PMAURL-1:db_structure.php?db=gaubert_tabasco&table=&server=1&target=&token=52bcd1412e53c98f86920e2e2cfafea2;dbname=tabasco;charset=utf8");
+
+  $db = new PDO("mysql:host=localhost;dbname=gaubert_tabasco;charset=utf8","gaubert_test","testtestg4");
+
 }catch(PDOException  $e ){
 echo "Error: ".$e;
 }
-
 
 $req = 'select id from reponse_valide WHERE id_question=' . $_POST['idQuestion'] . ' AND valide=1';
 $query=$db->prepare($req);
