@@ -1,7 +1,11 @@
 <?php
 session_start();
 try{
+<<<<<<< HEAD
   $db = new PDO("mysql:host=localhost;dbname=gaubert_tabasco;charset=utf8","gaubert_test","testtestg4");
+=======
+$db = new PDO("mysql:host=https://tabasco-team.labo-g4.fr:2083;dbname=tabasco;charset=utf8","gaubert","841aZYTR2b");
+>>>>>>> fef583bee57a6de6bdc5534d10bb751048e661eb
 }catch(PDOException  $e ){
 echo "Error: ".$e;
 }
