@@ -15,8 +15,8 @@ try{
 		$query->execute();
 		$result = $query->fetch();
 		if($result != null){
-	 		$_SESSION['login'] = true;
-	 		$_SESSION['id'] = 1;
+	 		$_SESSION['login'] = $result['login'];
+	 		$_SESSION['id'] = $result['id'];
 	 		header('Location: ../accueil.php');
 
 	 	}

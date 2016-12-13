@@ -34,14 +34,12 @@
 
               <div class="row">
                 <div class="input-field col s12">
-                  <input  type="text" class="validate" name="login" id="login">
-                  <label for="login">Login</label>
+                  <input  type="text" class="validate" name="login" id="login" placeholder="Login">
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input  type="text" class="validate" name="mdp" id="mdp">
-                  <label for="mdp">Mot de passe</label>
+                  <input  type="password" class="validate" name="mdp" id="mdp" placeholder="Mot de passe">
                 </div>
               </div>
               <div class="row align">
@@ -59,7 +57,7 @@
     <script type="text/javascript" src="css/materialize/js/materialize.min.js"></script>
     <script type="text/javascript">
       document.getElementById("btnClose").addEventListener("click", function(){
-        document.getElementById("messageErreur").style.display = "none";
+        document.getElementById("erreur").style.display = "none";
       });
     </script>
 </body>
