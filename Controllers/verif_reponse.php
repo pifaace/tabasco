@@ -7,7 +7,6 @@ try{
 echo "Error: ".$e;
 }
 
-
 $req = 'select id from reponse_valide WHERE id_question=' . $_POST['idQuestion'] . ' AND valide=1';
 $query=$db->prepare($req);
 $query->execute();
