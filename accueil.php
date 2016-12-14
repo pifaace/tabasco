@@ -1,11 +1,6 @@
 <?php
-try {
-    //$db = new PDO("mysql:host=localhost;dbname=tabasco;charset=utf8","root","root");
-    $db = new PDO("mysql:host=localhost;dbname=gaubert_tabasco;charset=utf8", "gaubert_test", "testtestg4");
+include('connexionBD.php');
 
-} catch (PDOException  $e) {
-    echo "Error: " . $e;
-}
 ?>
 <!doctype html>
 <html lang="fr">
@@ -36,6 +31,7 @@ try {
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 <a-scene>
     <a-assets>
         <img id="city" crossorigin="anonymous" src="img/test.jpg">
