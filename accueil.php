@@ -37,7 +37,7 @@ include('connexionBD.php');
         <img id="city" crossorigin="anonymous" src="img/test.jpg">
 
         <img id="city-thumb" crossorigin="anonymous" src="img/formation2.jpg">
-        <img id="cubes-thumb" crossorigin="anonymous" src="img/formation1.png">
+        <img id="cu bes-thumb" crossorigin="anonymous" src="img/formation1.png">
         <!--<img id="cubes" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">-->
 
 
