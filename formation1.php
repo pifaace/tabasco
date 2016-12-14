@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 include('connexionBD.php');
 
   $req = 'select * from question';
@@ -195,6 +194,12 @@ include('connexionBD.php');
 
         $('#div1').mousedown(function(){
             $('#box1').hide();
+            //$('#box2').hide();
+            //$('#overlay').hide();
+        });
+
+        $('#div2').mousedown(function(){
+            $('#box2').hide();
             //$('#box2').hide();
             //$('#overlay').hide();
         });
