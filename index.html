@@ -1,44 +1,5 @@
 <!DOCTYPE HTML5>
 <html>
-<<<<<<< HEAD
-	<head>
-		<script src="js/aframe.min.js"></script>
-		<script src="js/aframe-event-set-component.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<script src="js/cursor.js"></script>
-	</head>
-	<body>
-		<a-scene>
-			<a-assets>
-				<video id="video" autoplay src="files/360_0019_Stitch_YHC.mp4" loop="true" webkit-playsinline/>
-			</a-assets>
-
-			<a-videosphere src="#video" id="video_fond">
-				<a-box id="box1" width="1" height="1" depth="1" position="20 20 20" rotation="45 45 45" scale="1 2.5 1"></a-box>
-				<a-box id="box2" width="1" height="1" depth="1" position="10 1 1" rotation="45 45 45" scale="1 2.5 1"></a-box>
-			</a-videosphere>
-
-			<script type="text/javascript">
-			function hover(){
-				document.getElementById("modal").style.width = "200px";
-				console.log('ok');
-			}
-			</script>
-			
-
-
-			<a-entity camera look-controls>
-		        <a-cursor id="cursor"
-		          animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" color="black"></a-cursor>
-		      </a-entity>
-
-		      <div id="modal" style="position:relative;width:500px;height:500px;z-index:999;background:black"></div>
-
-		</a-scene> 
-	</body>
-</html>
-=======
-
 <head>
     <!--<script src="js/aframe.min.js"></script>-->
     <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
@@ -98,4 +59,3 @@
 -->
 
 </html>
->>>>>>> 0d321fdeaf777aa279c918928271f28d6ced9907
