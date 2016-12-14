@@ -2,6 +2,7 @@
 session_start();
 try{
   $db = new PDO("mysql:host=localhost;dbname=gaubert_tabasco;charset=utf8","gaubert_test","testtestg4");
+  //$db = new PDO("mysql:host=localhost;dbname=tabasco;charset=utf8","root","");
 }catch(PDOException  $e ){
 echo "Error: ".$e;
 }
@@ -86,8 +87,8 @@ echo "Error: ".$e;
 
     ?>
 
-    <a-box class="boxQuestion" id="box<?= $question['id']; ?>">
-          <a-box class="boxHeader">
+    <div class="boxQuestion" id="box<?= $question['id']; ?>">
+          <div class="boxHeader">
             Q<?= $i; ?> : <?= $question['libelle_question']; ?>
           </div>
 
@@ -119,7 +120,7 @@ echo "Error: ".$e;
               </form>
             </div>
           </div>
-    </a-box>
+    </div>
 
 
     <?php
@@ -186,20 +187,20 @@ echo "Error: ".$e;
        });
 
 
-        $('#div1').click(function(){
+        $('#div1').mouseup(function(){
             $('#box1').show();
             $('#overlay').show();
         });
 
-        $('#div2').click(function(){
+        $('#div2').mouseup(function(){
             $('#box2').show();
             $('#overlay').show();
         });
 
-        $('#overlay').click(function(){
-            $('#box1').hide();
-            $('#box2').hide();
-            $('#overlay').hide();
+        $('#box1').mousedown(function(){
+            $('#div1').hide();
+            //$('#box2').hide();
+            //$('#overlay').hide();
         });
 
         $('#close1').click(function(){
