@@ -1,7 +1,7 @@
 <?php
 session_start();
 try{
-  $db = new PDO("mysql:host=localhost;dbname=tabasco;charset=utf8","root","");
+  $db = new PDO("mysql:host=localhost;dbname=gaubert_tabasco;charset=utf8","gaubert_test","testtestg4");
 }catch(PDOException  $e ){
 echo "Error: ".$e;
 }
@@ -89,14 +89,14 @@ echo "Error: ".$e;
     <a-box class="boxQuestion" id="box<?= $question['id']; ?>">
           <a-box class="boxHeader">
             Q<?= $i; ?> : <?= $question['libelle_question']; ?>
-          </a-box>
+          </div>
 
             <div class="row">
               <div class="erreur" id="erreur<?= $question['id']; ?>">
                 <div id="messageErreur<?= $question['id']; ?>"></div><i class="close material-icons" id="close<?= $question['id']; ?>">close</i>
               </div>
             </div>
-          <a-box class="boxBody">
+          <div class="boxBody">
 
             <div class="row">
               <form class="col s12" action="" id="formBox<?= $question['id']; ?>">
@@ -117,7 +117,7 @@ echo "Error: ".$e;
                    </div>
                  </div>
               </form>
-            </a-box>
+            </div>
           </div>
     </a-box>
 

@@ -1,7 +1,12 @@
 <?php
-session_start();
 try{
+<<<<<<< HEAD
   $db = new PDO("mysql:host=localhost;dbname=tabasco;charset=utf8","root","");
+=======
+  //$db = new PDO("mysql:host=localhost;dbname=tabasco;charset=utf8","root","root");
+  $db = new PDO("mysql:host=localhost;dbname=gaubert_tabasco;charset=utf8","gaubert_test","testtestg4");
+
+>>>>>>> 0d321fdeaf777aa279c918928271f28d6ced9907
 }catch(PDOException  $e ){
 echo "Error: ".$e;
 }
@@ -25,7 +30,7 @@ echo "Error: ".$e;
       <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <a href="formation1.php" class="divHover" id="div1">Formation 1</div>
-  <a href="formation2.php" class="divHover" id="div2" >Formation 2</div>
+  <a href="Controllers/acces_formation1.php" class="divHover" id="div1">Formation 1</a>
+  <a href="Controllers/acces_formation2.php" class="divHover" id="div2" >Formation 2</a>
 </body>
 </html>

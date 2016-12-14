@@ -90,6 +90,7 @@ body, html{
 }
 
 .error{
+<<<<<<< HEAD
   background-color: darkred;}
 
 .explication{
@@ -103,3 +104,19 @@ body, html{
 label{
  color : #000;
 }
+=======
+  background-color: darkred;
+}
+
+.explication{
+  display: none;
+}
+
+#bonneRep{
+  color: green;
+}
+
+label{
+  color : #000;
+}
+>>>>>>> 0d321fdeaf777aa279c918928271f28d6ced9907
