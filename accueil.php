@@ -1,4 +1,5 @@
 <?php
+
 include('connexionBD.php');
 
 ?>
@@ -95,5 +96,6 @@ include('connexionBD.php');
     })
 
 </script>
+
 </body>
 </html>

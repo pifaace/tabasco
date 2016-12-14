@@ -82,6 +82,7 @@ body, html{
   top: 10%;
   left : 10%;
   background-color: #fff;
+  z-index: 999;
 }
 
 .success{
@@ -89,6 +90,21 @@ body, html{
 }
 
 .error{
+<<<<<<< HEAD
+  background-color: darkred;}
+
+.explication{
+ display: none;
+}
+
+#bonneRep{
+ color: green;
+}
+
+label{
+ color : #000;
+}
+=======
   background-color: darkred;
 }
 
@@ -103,3 +119,4 @@ body, html{
 label{
   color : #000;
 }
+>>>>>>> 0d321fdeaf777aa279c918928271f28d6ced9907

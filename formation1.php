@@ -1,13 +1,6 @@
 <?php
-session_start();
-try{
-  //$db = new PDO("mysql:host=localhost;dbname=tabasco;charset=utf8","root","root");
-  $db = new PDO("mysql:host=localhost;dbname=gaubert_tabasco;charset=utf8","gaubert_test","testtestg4");
 
-
-}catch(PDOException  $e ){
-echo "Error: ".$e;
-}
+include('connexionBD.php');
 
   $req = 'select * from question';
   $query=$db->prepare($req);
@@ -33,13 +26,39 @@ echo "Error: ".$e;
 
 
        <link rel="stylesheet" href="css/style.css">
+
+
+
+      <script src="js/aframe.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="js/cursor.js"></script>
+
+
  </head>
  <body>
 
 
+ <a-scene>
+      <a-assets>
+        <video id="video" autoplay src="files/360_0019_Stitch_YHC.mp4" loop="true" webkit-playsinline/>
+      </a-assets>
 
-  <div class="divHover" id="div1">Q1</div>
-  <div class="divHover" id="div2" >Q2</div>
+      <a-videosphere src="#video" id="video_fond">
+        <a-box id="div1" width="1" height="1" depth="1" position="20 20 20" rotation="45 45 45" scale="1 2.5 1"></a-box>
+        <a-box id="div2" width="1" height="1" depth="1" position="10 1 1" rotation="45 45 45" scale="1 2.5 1"></a-box>
+      </a-videosphere>
+      <a-entity camera look-controls>
+            <a-cursor id="cursor"
+              animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" color="black"></a-cursor>
+          </a-entity>
+
+    
+
+    
+
+
+  <!--<div class="divHover" id="div1">Q1</div>
+  <div class="divHover" id="div2" >Q2</div>-->
 
 
   <div id="overlay"></div>
@@ -53,10 +72,14 @@ echo "Error: ".$e;
     $query->execute();
     $reponses = $query->fetchAll();
 
+
+
     $req = 'select * from reponse_valide WHERE id_question=' . $question['id'] . ' AND valide=1';
-    $query=$db->prepare($req);
-    $query->execute();
-    $reponseCorrect = $query->fetch();
+   $query=$db->prepare($req);
+   $query->execute();
+   $reponseCorrect = $query->fetch();
+
+
     ?>
 
     <div class="boxQuestion" id="box<?= $question['id']; ?>">
@@ -78,7 +101,7 @@ echo "Error: ".$e;
                   <p><input type="hidden" name="idQuestion" value="<?=$question['id']; ?>"/></p>
                   <p>
                      <input name="group1" type="radio" id="test<?= $reponse['id']; ?>" class="with-gap" value="<?= $reponse['id']; ?>" <?php if(isset($_GET['idRep']) && $_GET['idRep']== $reponse['id']) echo 'checked'; ?>/>
-                     <label for="test<?= $reponse['id']; ?>"><?= $reponse[libelle_reponse]; ?></label>
+                     <label for="test<?= $reponse['id']; ?>"><?= $reponse['libelle_reponse']; ?></label>
                    </p>
                   <?php
                 }
@@ -86,13 +109,11 @@ echo "Error: ".$e;
                 <div class="row explication" id="explication<?= $question['id']; ?>"><br/><span id="bonneRep">Bonne réponse : <?= $reponseCorrect['libelle_reponse']; ?> </span><br/><br/><?= $question['explication']; ?></div>
                  <div class="row align">
                    <div class="input-field col s12">
-                     <input  type="submit" class="btn-large" name="envoyer" id="envoyer<?= $question['id']; ?>" value="Valider"/>
+                     <input  type="submit" class="waves-effect waves-light btn" name="envoyer" id="envoyer" value="Valider"/>
                    </div>
                  </div>
-
               </form>
             </div>
-
           </div>
     </div>
 
@@ -110,73 +131,77 @@ echo "Error: ".$e;
 
 
 
-      $(document).ready(function() {
+    $(document).ready(function() {
 
         $( "#formBox1" ).submit(function( event ) {
-          event.preventDefault();
-          var $form = $( this ),
-            idQuest = $form.find( "input[name='idQuestion']").val(),
-            valUser = $form.find( "input[type='radio'][name='group1']:checked" ).attr('value'),
-            url = 'Controllers/verif_reponse.php';
-          var posting = $.post( url, { valU: valUser, idQuestion : idQuest } );
-          posting.done(function( data ) {
-            $( "#messageErreur1" ).text(data);
-            if(data === "Bonne réponse"){
-              $( "#erreur1" ).addClass('success');
-              $( "#erreur1" ).removeClass('error');
-            }
-            else{
-              $( "#erreur1" ).addClass('error');
-              $( "#erreur1" ).removeClass('success');
-            }
-            $( "#erreur1" ).show();
-            $("#explication1").show();
-            $("#envoyer1").addClass('disabled');
-          });
+         event.preventDefault();
+         var $form = $( this ),
+           idQuest = $form.find( "input[name='idQuestion']").val(),
+           valUser = $form.find( "input[type='radio'][name='group1']:checked" ).attr('value'),
+           url = 'Controllers/verif_reponse.php';
+         var posting = $.post( url, { valU: valUser, idQuestion : idQuest } );
+         posting.done(function( data ) {
+           $( "#messageErreur1" ).text(data);
+           if(data === "Bonne réponse"){
+             $( "#erreur1" ).addClass('success');
+             $( "#erreur1" ).removeClass('error');
+           }
+           else{
+             $( "#erreur1" ).addClass('error');
+             $( "#erreur1" ).removeClass('success');
+           }
+           $( "#erreur1" ).show();
+           $("#explication1").show();
+           $("#envoyer1").addClass('disabled');
+         });
 
-        });
-
-
+       });
+  
         $( "#formBox2" ).submit(function( event ) {
-          event.preventDefault();
-          var $form = $( this ),
+            event.preventDefault();
+            var $form = $( this ),
             idQuest = $form.find( "input[name='idQuestion']").val(),
             valUser = $form.find( "input[type='radio'][name='group1']:checked" ).attr('value'),
             url = 'Controllers/verif_reponse.php';
-          var posting = $.post( url, { valU: valUser, idQuestion : idQuest } );
-          posting.done(function( data ) {
-            $( "#messageErreur2" ).text(data);
-            if(data === "Bonne réponse"){
-              $( "#erreur2" ).addClass('success');
-              $( "#erreur2" ).removeClass('error');
-            }
-            else{
-              $( "#erreur2" ).addClass('error');
-              $( "#erreur2" ).removeClass('success');
-            }
-            $( "#erreur2" ).show();
-            $("#explication2").show();
-            $("#envoyer2").addClass('disabled');
-          });
+            var posting = $.post( url, { valU: valUser, idQuestion : idQuest } );
+            posting.done(function( data ) {
+                $( "#messageErreur2" ).text(data);
+                  if(data === "Bonne réponse"){
+                  $( "#erreur2" ).addClass('success');
+                  $( "#erreur2" ).removeClass('error');
+                }
+                else{
+                  $( "#erreur2" ).addClass('error');
+                  $( "#erreur2" ).removeClass('success');
+                }
+                $( "#erreur2" ).show();
+                $("#explication2").show();
+                $("#envoyer2").addClass('disabled'); 
+            });
 
-        });
+       });
 
 
-
-        $('#div1').click(function(){
+        $('#div1').mouseup(function(){
             $('#box1').show();
             $('#overlay').show();
         });
 
-        $('#div2').click(function(){
+        $('#div2').mouseup(function(){
             $('#box2').show();
             $('#overlay').show();
         });
 
-        $('#overlay').click(function(){
+        $('#div1').mousedown(function(){
             $('#box1').hide();
+            //$('#box2').hide();
+            //$('#overlay').hide();
+        });
+
+        $('#div2').mousedown(function(){
             $('#box2').hide();
-            $('#overlay').hide();
+            //$('#box2').hide();
+            //$('#overlay').hide();
         });
 
         $('#close1').click(function(){
@@ -186,9 +211,9 @@ echo "Error: ".$e;
         $('#close2').click(function(){
           $( "#erreur2" ).hide();
         });
-      });
+  });
     </script>
 
-
+</a-scene> 
  </body>
  </html>

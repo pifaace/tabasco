@@ -1,48 +1,61 @@
-<!DOCTYPE>
+<!DOCTYPE HTML5>
 <html>
-	<head>
-		<script src="js/aframe.min.js"></script>
-		<script src="js/aframe-event-set-component.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.js"></script>
-		<script src="js/cursor.js"></script>
-	</head>
-	<body>
-		<a-scene>
-			<a-assets>
-				<video id="video" autoplay src="files/360_0019_Stitch_YHC.mp4" loop="true" webkit-playsinline/>
-			</a-assets>
+<head>
+    <!--<script src="js/aframe.min.js"></script>-->
+    <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
+    <script src="js/aframe-animation-component.js"></script>
+    <script src="js/aframe-event-set-component.js"></script>
+    <script src="js/aframe-layout-component.js"></script>
+    <script src="js/aframe-template-component.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/click_event.js"></script>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta charset="utf-8">
+</head>
 
-			<a-videosphere src="#video" id="video_fond">
-				<a-box id="box1" width="1" height="1" depth="1" position="20 20 20" rotation="45 45 45" scale="1 2.5 1" z-index="999"></a-box>
-				<a-box id="box2" width="1" height="1" depth="1" position="10 1 1" rotation="45 45 45" scale="1 2.5 1" z-index="999"></a-box>
-			</a-videosphere>
-			
+<body>
+    <a-scene>
+        <a-assets>
+            <video id="video" src="./files/360_0019_Stitch_YHCC.mp4" webkit-playsinline crossOrigin="anonymous" autoplay="false" loop="true" />
+        </a-assets>
 
-        <a-videosphere src="#video" id="video_fond">
+        <a-videosphere src="#video" id="video_fond" webkit-playsinline>
             <a-box id="box1" width="1" height="1" depth="1" position="20 20 20" rotation="45 45 45" scale="1 2.5 1" z-index="999" color="red"></a-box>
             <a-box id="box2" width="1" height="1" depth="1" position="5 0 -20" rotation="0 0 0" scale="1 2.5 1" z-index="999"></a-box>
         </a-videosphere>
 
         <!-- Camera + cursor. -->
-      <a-entity camera look-controls>
-        <a-cursor id="cursor"
-          animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
-          animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
-          event-set__1="_event: mouseenter; color: red"
-          event-set__2="_event: mouseleave; color: white"
-          raycaster="objects: .link" color="white" ></a-cursor>
-      </a-entity>
+        <a-entity camera look-controls>
+            <a-cursor id="cursor" animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500" event-set__1="_event: mouseenter; color: red" event-set__2="_event: mouseleave; color: white" raycaster="objects: .link" color="white"></a-cursor>
+        </a-entity>
+
+        <a-entity video-controls="src:#video"></a-entity>
 
     </a-scene>
 </body>
 
-</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://rawgit.com/oscarmarinmiro/aframe-video-controls/master/dist/aframe-video-controls.min.js"></script>
 
-			<a-entity camera look-controls>
-		        <a-cursor id="cursor"
-		          animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" color="black"></a-cursor>
-		      </a-entity>
+<!--
+<script>
+    $(document).ready(function() {
+        var vid = document.getElementById('video');
+        console.log(vid);
 
-		</a-scene>
-	</body>
+        document.getElementById('refresh-button').addEventListener("click", function(e) {
+            vid.play();
+        }, false);
+        
+        $( "#refresh-button" ).on( "click", function() {            
+            vid.play();
+        });
+        $( "#refresh-button" ).trigger( "click" );
+
+    });
+    
+    
+</script>
+-->
+
 </html>
