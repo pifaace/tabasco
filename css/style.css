@@ -82,6 +82,7 @@ body, html{
   top: 10%;
   left : 10%;
   background-color: #fff;
+  z-index: 999;
 }
 
 .success{
@@ -90,3 +91,15 @@ body, html{
 
 .error{
   background-color: darkred;}
+
+.explication{
+ display: none;
+}
+
+#bonneRep{
+ color: green;
+}
+
+label{
+ color : #000;
+}
