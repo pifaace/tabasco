@@ -57,6 +57,7 @@ echo "Error: ".$e;
     $query=$db->prepare($req);
     $query->execute();
     $reponseCorrect = $query->fetch();
+
     ?>
 
     <div class="boxQuestion" id="box<?= $question['id']; ?>">

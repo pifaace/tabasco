@@ -26,7 +26,7 @@ echo "Error: ".$e;
       <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <a href="Controllers/acces_formation1.php" class="divHover" id="div1">Formation 1</div>
-  <a href="Controllers/acces_formation2.php" class="divHover" id="div2" >Formation 2</div>
+  <a href="Controllers/acces_formation1.php" class="divHover" id="div1">Formation 1</a>
+  <a href="Controllers/acces_formation2.php" class="divHover" id="div2" >Formation 2</a>
 </body>
 </html>
