@@ -13,7 +13,7 @@ include('../connexionBD.php');
 		if($result != null){
 	 		$_SESSION['login'] = $result['login'];
 	 		$_SESSION['id'] = $result['id'];
-	 		header('Location: ../accueil.php');
+	 		header('Location: ../accueil.html');
 
 	 	}
 	 	else{

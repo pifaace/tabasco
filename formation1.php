@@ -2,6 +2,8 @@
 
 session_start();
 include('connexionBD.php');
+$_SESSION['nbQuestion'] = 0;
+$_SESSION['formation'] = 1;
 
   $req = 'select * from question';
   $query=$db->prepare($req);
@@ -198,6 +200,14 @@ include('connexionBD.php');
                var idQ = $(this).attr('name');
                url = 'Controllers/verif_reponse.php';
                var posting = $.post( url, { valU: idRep, idQuestion : idQ } );
+
+               url = 'Controllers/nbQuest.php';
+               var posting2 = $.post(url);
+               posting2.done(function(data){
+                   $('#nbQ').text('Question : ' + data + '/5');
+               });
+
+
                $(".Reponse1").off();
                if ($(this).hasClass('vrai')) {
                    $(this).attr('src', 'img/bonneReponse.png');
@@ -214,7 +224,7 @@ include('connexionBD.php');
                }
                $('.Question1 #Question1, .Question1 .Reponse1, .Question1 .Explication1').animate({
                    opacity: 0
-               }, 2000, function() {
+               }, 3000, function() {
                    $(this).attr('opacity', '0').attr('height', '0')
                });
            });
@@ -225,6 +235,14 @@ include('connexionBD.php');
                var idQ = $(this).attr('name');
                url = 'Controllers/verif_reponse.php';
                var posting = $.post( url, { valU: idRep, idQuestion : idQ } );
+
+               url = 'Controllers/nbQuest.php';
+               var posting2 = $.post(url);
+               posting2.done(function(data){
+                   $('#nbQ').text('Question : ' + data + '/5');
+               });
+
+
                $(".Reponse2").off();
                if ($(this).hasClass('vrai')) {
                    $(this).attr('src', 'img/bonneReponse.png');
@@ -241,7 +259,7 @@ include('connexionBD.php');
                }
                $('.Question2 #Question2, .Question2 .Reponse2, .Question2 .Explication2').animate({
                    opacity: 0
-               }, 2000, function() {
+               }, 3000, function() {
                    $(this).attr('opacity', '0').attr('height', '0')
                });
            });
@@ -252,6 +270,14 @@ include('connexionBD.php');
                var idQ = $(this).attr('name');
                url = 'Controllers/verif_reponse.php';
                var posting = $.post( url, { valU: idRep, idQuestion : idQ } );
+
+               url = 'Controllers/nbQuest.php';
+               var posting2 = $.post(url);
+               posting2.done(function(data){
+                   $('#nbQ').text('Question : ' + data + '/5');
+               });
+
+
                $(".Reponse3").off();
                if ($(this).hasClass('vrai')) {
                    $(this).attr('src', 'img/bonneReponse.png');
@@ -267,7 +293,7 @@ include('connexionBD.php');
                    $(".Explication3").attr('height', '2');               }
                $('.Question3 #Question3, .Question3 .Reponse3, .Question3 .Explication3').animate({
                    opacity: 0
-               }, 2000, function() {
+               }, 3000, function() {
                    $(this).attr('opacity', '0').attr('height', '0')
                });
            });
@@ -278,6 +304,14 @@ include('connexionBD.php');
                var idQ = $(this).attr('name');
                url = 'Controllers/verif_reponse.php';
                var posting = $.post( url, { valU: idRep, idQuestion : idQ } );
+
+               url = 'Controllers/nbQuest.php';
+               var posting2 = $.post(url);
+               posting2.done(function(data){
+                   $('#nbQ').text('Question : ' + data + '/5');
+               });
+
+
                $(".Reponse4").off();
                if ($(this).hasClass('vrai')) {
                    $(this).attr('src', 'img/bonneReponse.png');
@@ -291,11 +325,10 @@ include('connexionBD.php');
                    $(this).attr("opacity","1");
                    $(".Explication4").attr('opacity', '1');
                    $(".Explication4").attr('height', '2');
-
                }
                $('.Question4 #Question4, .Question4 .Reponse4, .Question4 .Explication4').animate({
                    opacity: 0
-               }, 2000, function() {
+               }, 3000, function() {
                    $(this).attr('opacity', '0').attr('height', '0')
                });
            });
@@ -306,6 +339,14 @@ include('connexionBD.php');
                var idQ = $(this).attr('name');
                url = 'Controllers/verif_reponse.php';
                var posting = $.post( url, { valU: idRep, idQuestion : idQ } );
+
+               url = 'Controllers/nbQuest.php';
+               var posting2 = $.post(url);
+               posting2.done(function(data){
+                   $('#nbQ').text('Question : ' + data + '/5');
+               });
+
+
                $(".Reponse5").off();
                if ($(this).hasClass('vrai')) {
                    $(this).attr('src', 'img/bonneReponse.png');
@@ -325,7 +366,7 @@ include('connexionBD.php');
                }
                $('.Question5 #Question5, .Question5 .Reponse5, .Question5 .Explication5').animate({
                    opacity: 0
-               }, 2000, function() {
+               }, 3000, function() {
                    $(this).attr('opacity', '0').attr('height', '0')
                });
            });
@@ -364,5 +405,6 @@ include('connexionBD.php');
     </script>
 
 </a-scene>
+<div id="nbQ">Question : 0/5</div>
  </body>
  </html>

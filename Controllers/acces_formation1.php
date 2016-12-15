@@ -1,6 +1,5 @@
 <?php
 
-$_SESSION['formation'] = 1;
 
 include('../connexionBD.php');
 
