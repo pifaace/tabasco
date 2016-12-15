@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 include('connexionBD.php');
 
   $req = 'select * from question';
@@ -31,7 +32,7 @@ include('connexionBD.php');
 
       <script src="js/aframe.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-      <script src="js/cursor.js"></script>
+
 
 
  </head>
@@ -40,180 +41,328 @@ include('connexionBD.php');
 
  <a-scene>
       <a-assets>
-        <video id="video" autoplay src="files/360_0019_Stitch_YHC.mp4" loop="true" webkit-playsinline/>
+        <video id="video" src="./files/360_0019_Stitch_YHCC.mp4" webkit-playsinline crossOrigin="anonymous" autoplay="true" loop="true" />
+        <?php
+          foreach($questions as $question){
+            echo '<img id="Explication' . $question['id'] . '" src="' . $question['explication'] . '">';
+            echo '<img id="Question' . $question['id'] . '" src="' . $question['libelle_question'] . '">';
+            $req = 'select * from reponse_valide WHERE id_question=' . $question['id'];
+            $query=$db->prepare($req);
+            $query->execute();
+            $reponses = $query->fetchAll();
+            foreach($reponses as $reponse){
+              echo '<img id="Reponse' . $question['id'] . '-' . $reponse['id'] . '" src="' . $reponse['libelle_reponse'] . '">';
+            }
+          }?>
+          <img id="MarkQuestion" src="img/MarkQuestion.png">
       </a-assets>
 
-      <a-videosphere src="#video" id="video_fond">
-        <a-box id="div1" width="1" height="1" depth="1" position="20 20 20" rotation="45 45 45" scale="1 2.5 1"></a-box>
-        <a-box id="div2" width="1" height="1" depth="1" position="10 1 1" rotation="45 45 45" scale="1 2.5 1"></a-box>
-      </a-videosphere>
+      <a-videosphere src="#video" id="video_fond" webkit-playsinline></a-videosphere>
+
+
+      <a-entity class="Question-Wrapper">
+          <a-image class="Mark" src="#MarkQuestion" opacity="1" position="-1 -1 -12" width="2" height="2" z-index="2999" id="Mark1" rotation="0 0 0"></a-image>
+          <a-entity class="Question1">
+              <a-image src="#Question1" opacity="0" position="-2 3 -12" width="10" height="2" z-index="3000" id="Question1" class="Question"></a-image>
+              <?php
+                $req = 'select * from reponse_valide WHERE id_question=1';
+                $query=$db->prepare($req);
+                $query->execute();
+                $reponses = $query->fetchAll();
+                $i = 1;
+                foreach($reponses as $reponse){
+                  if($reponse['valide'] == 1) $var = 'vrai';
+                  else $var = 'faux';
+                  echo '<a-image src="#Reponse1-' . $reponse['id'] . '" opacity="0" id="' . $reponse['id'] . '" name="1" position="-2 ' . $i . ' -12" width="10" height="0" z-index="3000" class="Reponse1 Reponse1' . $reponse['id'] . ' ' . $var . '"></a-image>';
+                  $i= $i-2;
+                }
+
+              ?>
+              <a-image src="#Explication1" opacity="0" position="-2 <?= $i; ?> -12" width="10" height="0" z-index="3000" class="Explication1" ></a-image>
+          </a-entity>
+      </a-entity>
+
+      <a-entity class="Question-Wrapper">
+         <a-image  class="Mark" src="#MarkQuestion" opacity="1" position="-2 0 13" width="2" height="2" z-index="2999" id="Mark2" rotation="0 220 0"></a-image>
+         <a-entity class="Question2">
+             <a-image src="#Question2" opacity="0" rotation="0 190 0" position="-2 3 13" width="10" height="0" z-index="3000" id="Question2" class="Question"></a-image>
+             <?php
+             $req = 'select * from reponse_valide WHERE id_question=2';
+               $query=$db->prepare($req);
+               $query->execute();
+               $reponses = $query->fetchAll();
+               $i = 1;
+               foreach($reponses as $reponse){
+                 if($reponse['valide'] == 1) $var = 'vrai';
+                 else $var = 'faux';
+                 echo '<a-image src="#Reponse2-' . $reponse['id'] . '" opacity="0" id="' . $reponse['id'] . '" rotation="0 190 0" name="2" position="-2 ' . $i . ' 13" width="10" height="0" z-index="3000" class="Reponse2 Reponse2' . $reponse['id'] . ' ' . $var . '"></a-image>';
+                 $i= $i-2;
+               }              ?>
+               <a-image src="#Explication2" opacity="0" rotation="0 190 0" position="-2 <?= $i; ?> 13" width="10" height="0" z-index="3000" class="Explication2"></a-image>
+         </a-entity>
+     </a-entity>
+
+
+
+     <a-entity class="Question-Wrapper">
+        <a-image  class="Mark" src="#MarkQuestion" opacity="1" position="5 3 6" width="2" height="2" z-index="2999" id="Mark3" rotation="0 190 0"></a-image>
+        <a-entity class="Question3" position="0 3 0" rotation="0 10 0">
+            <a-image src="#Question3" opacity="0" rotation="0 220 0" position="7 3 8" width="10" height="2" z-index="3000" id="Question3" class="Question"></a-image>
+            <?php
+            $req = 'select * from reponse_valide WHERE id_question=3';
+              $query=$db->prepare($req);
+              $query->execute();
+              $reponses = $query->fetchAll();
+              $i = 1;
+              foreach($reponses as $reponse){
+                if($reponse['valide'] == 1) $var = 'vrai';
+                else $var = 'faux';
+                echo '<a-image src="#Reponse3-' . $reponse['id'] . '" opacity="0" id="' . $reponse['id'] . '" rotation="0 220 0" name="3" position="7 ' . $i . ' 8" width="10" height="0" z-index="3000" class="Reponse3 ' . $var . '"></a-image>';
+                $i= $i-2;
+              }              ?>
+
+              <a-image src="#Explication3" opacity="0" rotation="0 220 0" position="7 <?= $i; ?> 8" width="10" height="0" z-index="3000" class="Explication3"$></a-image>
+
+        </a-entity>
+    </a-entity>
+
+    <a-entity class="Question-Wrapper">
+        <a-image  class="Mark" src="#MarkQuestion" opacity="1" position="6 0 -3" width="2" height="2" z-index="2999" id="Mark4" rotation="0 250 0"></a-image>
+        <a-entity class="Question4">
+            <a-image src="#Question4" opacity="0" position="6 3 -5" rotation="0 295 0" width="10" height="0" z-index="3000" id="Question4" class="Question"></a-image>
+            <?php
+              $req = 'select * from reponse_valide WHERE id_question=4';
+              $query=$db->prepare($req);
+              $query->execute();
+              $reponses = $query->fetchAll();
+              $i = 1;
+              foreach($reponses as $reponse){
+                if($reponse['valide'] == 1) $var = 'vrai';
+                else $var = 'faux';
+                echo '<a-image src="#Reponse4-' . $reponse['id'] . '" opacity="0" id="' . $reponse['id'] . '" name="4" position="6 ' . $i . ' -5" rotation="0 295 0" width="10" height="0" z-index="3000" class="Reponse4 Reponse4' . $reponse['id'] . ' ' . $var . '"></a-image>';
+                $i= $i-2;
+              }
+
+            ?>
+            <a-image src="#Explication4" opacity="0" position="6 <?= $i; ?> -5" rotation="0 295 0" width="10" height="0" z-index="3000" class="Explication4"></a-image>
+
+        </a-entity>
+    </a-entity>
+
+   <a-entity class="Question-Wrapper">
+       <a-image  class="Mark" src="#MarkQuestion" opacity="1" position="-10 0 6" width="2" height="2" z-index="2999" id="Mark5" rotation="0 80 0"></a-image>
+       <a-entity class="Question5">
+           <a-image src="#Question5" opacity="0" position="-10 3 4" rotation="0 110 0" width="10" height="0" z-index="3000" id="Question5" class="Question"></a-image>
+           <?php
+             $req = 'select * from reponse_valide WHERE id_question=5';
+             $query=$db->prepare($req);
+             $query->execute();
+             $reponses = $query->fetchAll();
+             $i = 1;
+             foreach($reponses as $reponse){
+               if($reponse['valide'] == 1) $var = 'vrai';
+               else $var = 'faux';
+               echo '<a-image src="#Reponse5-' . $reponse['id'] . '" opacity="0" id="' . $reponse['id'] . '" name="5" position="-10 ' . $i . ' 4" rotation="0 110 0" width="10" height="0" z-index="3000" class="Reponse5 Reponse5' . $reponse['id'] . ' ' . $var . '"></a-image>';
+               $i= $i-2;
+             }
+
+           ?>
+           <a-image src="#Explication5" opacity="0" position="-10 <?= $i; ?> 4" rotation="0 110 0" width="10" height="0" z-index="3000" class="Explication5"></a-image>
+
+       </a-entity>
+   </a-entity>
+
+
+
+
       <a-entity camera look-controls>
             <a-cursor id="cursor"
               animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" color="black"></a-cursor>
           </a-entity>
 
-    
 
-    
-
-
-  <!--<div class="divHover" id="div1">Q1</div>
-  <div class="divHover" id="div2" >Q2</div>-->
-
-
-  <div id="overlay"></div>
-  <?php
-  $i = 1;
-  foreach($questions as $question){
-
-
-    $req = 'select * from reponse_valide WHERE id_question=' . $question['id'];
-    $query=$db->prepare($req);
-    $query->execute();
-    $reponses = $query->fetchAll();
-
-
-
-    $req = 'select * from reponse_valide WHERE id_question=' . $question['id'] . ' AND valide=1';
-   $query=$db->prepare($req);
-   $query->execute();
-   $reponseCorrect = $query->fetch();
-
-
-    ?>
-
-    <div class="boxQuestion" id="box<?= $question['id']; ?>">
-          <div class="boxHeader">
-            Q<?= $i; ?> : <?= $question['libelle_question']; ?>
-          </div>
-
-            <div class="row">
-              <div class="erreur" id="erreur<?= $question['id']; ?>">
-                <div id="messageErreur<?= $question['id']; ?>"></div><i class="close material-icons" id="close<?= $question['id']; ?>">close</i>
-              </div>
-            </div>
-          <div class="boxBody">
-
-            <div class="row">
-              <form class="col s12" action="" id="formBox<?= $question['id']; ?>">
-                <?php foreach($reponses as $reponse){
-                  ?>
-                  <p><input type="hidden" name="idQuestion" value="<?=$question['id']; ?>"/></p>
-                  <p>
-                     <input name="group1" type="radio" id="test<?= $reponse['id']; ?>" class="with-gap" value="<?= $reponse['id']; ?>" <?php if(isset($_GET['idRep']) && $_GET['idRep']== $reponse['id']) echo 'checked'; ?>/>
-                     <label for="test<?= $reponse['id']; ?>"><?= $reponse['libelle_reponse']; ?></label>
-                   </p>
-                  <?php
-                }
-                ?>
-                <div class="row explication" id="explication<?= $question['id']; ?>"><br/><span id="bonneRep">Bonne réponse : <?= $reponseCorrect['libelle_reponse']; ?> </span><br/><br/><?= $question['explication']; ?></div>
-                 <div class="row align">
-                   <div class="input-field col s12">
-                     <input  type="submit" class="waves-effect waves-light btn" name="envoyer" id="envoyer" value="Valider"/>
-                   </div>
-                 </div>
-              </form>
-            </div>
-          </div>
-    </div>
-
-
-    <?php
-    $i++;
-  }?>
 
  <!--Import jQuery before materialize.js-->
-     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
      <script type="text/javascript" src="css/materialize/js/materialize.min.js"></script>
-     <!-- Une ou plusieurs balises HTML pour définir le contenu du document -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script type="text/javascript">
 
+       $(document).ready(function() {
 
 
-    $(document).ready(function() {
 
-        $( "#formBox1" ).submit(function( event ) {
-         event.preventDefault();
-         var $form = $( this ),
-           idQuest = $form.find( "input[name='idQuestion']").val(),
-           valUser = $form.find( "input[type='radio'][name='group1']:checked" ).attr('value'),
-           url = 'Controllers/verif_reponse.php';
-         var posting = $.post( url, { valU: valUser, idQuestion : idQuest } );
-         posting.done(function( data ) {
-           $( "#messageErreur1" ).text(data);
-           if(data === "Bonne réponse"){
-             $( "#erreur1" ).addClass('success');
-             $( "#erreur1" ).removeClass('error');
-           }
-           else{
-             $( "#erreur1" ).addClass('error');
-             $( "#erreur1" ).removeClass('success');
-           }
-           $( "#erreur1" ).show();
-           $("#explication1").show();
-           $("#envoyer1").addClass('disabled');
-         });
 
-       });
-  
-        $( "#formBox2" ).submit(function( event ) {
-            event.preventDefault();
-            var $form = $( this ),
-            idQuest = $form.find( "input[name='idQuestion']").val(),
-            valUser = $form.find( "input[type='radio'][name='group1']:checked" ).attr('value'),
-            url = 'Controllers/verif_reponse.php';
-            var posting = $.post( url, { valU: valUser, idQuestion : idQuest } );
-            posting.done(function( data ) {
-                $( "#messageErreur2" ).text(data);
-                  if(data === "Bonne réponse"){
-                  $( "#erreur2" ).addClass('success');
-                  $( "#erreur2" ).removeClass('error');
-                }
-                else{
-                  $( "#erreur2" ).addClass('error');
-                  $( "#erreur2" ).removeClass('success');
-                }
-                $( "#erreur2" ).show();
-                $("#explication2").show();
-                $("#envoyer2").addClass('disabled'); 
+           var imgSrc;
+           $('.Reponse1').click(function(e) {
+               imgSrc = $(this).attr('src');
+               var idRep = $(this).attr('id');
+               var idQ = $(this).attr('name');
+               url = 'Controllers/verif_reponse.php';
+               var posting = $.post( url, { valU: idRep, idQuestion : idQ } );
+               $(".Reponse1").off();
+               if ($(this).hasClass('vrai')) {
+                   $(this).attr('src', 'img/bonneReponse.png');
+                   $(".Reponse1").attr("opacity","0.6");
+                   $(this).attr("opacity","1");
+                   $(".Explication1").attr("opacity","1");
+                   $(".Explication1").attr("height", "2");
+               } else {
+                   $(this).attr('src', 'img/mauvaiseReponse.png');
+                    $(".Reponse1").attr("opacity","0.6");
+                   $(this).attr("opacity","1");
+                   $(".Explication1").attr("opacity","1");
+                   $(".Explication1").attr("height", "2");
+               }
+               $('.Question1 #Question1, .Question1 .Reponse1, .Question1 .Explication1').animate({
+                   opacity: 0
+               }, 2000, function() {
+                   $(this).attr('opacity', '0').attr('height', '0')
+               });
+           });
+
+           $('.Reponse2').click(function(e) {
+               imgSrc = $(this).attr('src');
+               var idRep = $(this).attr('id');
+               var idQ = $(this).attr('name');
+               url = 'Controllers/verif_reponse.php';
+               var posting = $.post( url, { valU: idRep, idQuestion : idQ } );
+               $(".Reponse2").off();
+               if ($(this).hasClass('vrai')) {
+                   $(this).attr('src', 'img/bonneReponse.png');
+                   $(".Reponse2").attr("opacity","0.6");
+                   $(this).attr("opacity","1");
+                   $(".Explication2").attr("opacity","1");
+                   $(".Explication2").attr("height", "2");
+               } else {
+                   $(this).attr('src', 'img/mauvaiseReponse.png');
+                    $(".Reponse2").attr("opacity","0.6");
+                   $(this).attr("opacity","1");
+                   $(".Explication2").attr("opacity","1");
+                   $(".Explication2").attr("height", "2");
+               }
+               $('.Question2 #Question2, .Question2 .Reponse2, .Question2 .Explication2').animate({
+                   opacity: 0
+               }, 2000, function() {
+                   $(this).attr('opacity', '0').attr('height', '0')
+               });
+           });
+
+           $('.Reponse3').click(function(e) {
+               imgSrc = $(this).attr('src');
+               var idRep = $(this).attr('id');
+               var idQ = $(this).attr('name');
+               url = 'Controllers/verif_reponse.php';
+               var posting = $.post( url, { valU: idRep, idQuestion : idQ } );
+               $(".Reponse3").off();
+               if ($(this).hasClass('vrai')) {
+                   $(this).attr('src', 'img/bonneReponse.png');
+                   $(".Reponse3").attr("opacity","0.6");
+                   $(this).attr("opacity","1");
+                   $(".Explication3").attr('opacity', '1');
+                   $(".Explication3").attr('height', '2');
+              } else {
+                   $(this).attr('src', 'img/mauvaiseReponse.png');
+                    $(".Reponse3").attr("opacity","0.6");
+                   $(this).attr("opacity","1");
+                   $(".Explication3").attr('opacity', '1');
+                   $(".Explication3").attr('height', '2');               }
+               $('.Question3 #Question3, .Question3 .Reponse3, .Question3 .Explication3').animate({
+                   opacity: 0
+               }, 2000, function() {
+                   $(this).attr('opacity', '0').attr('height', '0')
+               });
+           });
+
+           $('.Reponse4').click(function(e) {
+               imgSrc = $(this).attr('src');
+               var idRep = $(this).attr('id');
+               var idQ = $(this).attr('name');
+               url = 'Controllers/verif_reponse.php';
+               var posting = $.post( url, { valU: idRep, idQuestion : idQ } );
+               $(".Reponse4").off();
+               if ($(this).hasClass('vrai')) {
+                   $(this).attr('src', 'img/bonneReponse.png');
+                   $(".Reponse4").attr("opacity","0.6");
+                   $(this).attr("opacity","1");
+                   $(".Explication4").attr('opacity', '1');
+                   $(".Explication4").attr('height', '2');
+               } else {
+                   $(this).attr('src', 'img/mauvaiseReponse.png');
+                    $(".Reponse4").attr("opacity","0.6");
+                   $(this).attr("opacity","1");
+                   $(".Explication4").attr('opacity', '1');
+                   $(".Explication4").attr('height', '2');
+
+               }
+               $('.Question4 #Question4, .Question4 .Reponse4, .Question4 .Explication4').animate({
+                   opacity: 0
+               }, 2000, function() {
+                   $(this).attr('opacity', '0').attr('height', '0')
+               });
+           });
+
+           $('.Reponse5').click(function(e) {
+               imgSrc = $(this).attr('src');
+               var idRep = $(this).attr('id');
+               var idQ = $(this).attr('name');
+               url = 'Controllers/verif_reponse.php';
+               var posting = $.post( url, { valU: idRep, idQuestion : idQ } );
+               $(".Reponse5").off();
+               if ($(this).hasClass('vrai')) {
+                   $(this).attr('src', 'img/bonneReponse.png');
+                   $(".Reponse5").attr("opacity","0.6");
+                   $(this).attr("opacity","1");
+                   $(".Explication5").attr('opacity', '1');
+                   $(".Explication5").attr('height', '2');
+
+
+               } else {
+                   $(this).attr('src', 'img/mauvaiseReponse.png');
+                    $(".Reponse5").attr("opacity","0.6");
+                   $(this).attr("opacity","1");
+                   $(".Explication5").attr('opacity', '1');
+                   $(".Explication5").attr('height', '2');
+
+               }
+               $('.Question5 #Question5, .Question5 .Reponse5, .Question5 .Explication5').animate({
+                   opacity: 0
+               }, 2000, function() {
+                   $(this).attr('opacity', '0').attr('height', '0')
+               });
+           });
+
+
+           $('#Mark1').click(function() {
+               $('.Question1 #Question1, .Question1 .Reponse1').attr('opacity', '1').attr('height', '2');
+               $(this).attr('opacity', '0').attr('height', '0');
+           });
+
+           $('#Mark2').click(function() {
+              $('.Question2 #Question2, .Question2 .Reponse2').attr('opacity', '1').attr('height', '2');
+              $(this).attr('opacity', '0').attr('height', '0');
+          });
+
+          $('#Mark3').click(function() {
+             $('.Question3 #Question3, .Question3 .Reponse3').attr('opacity', '1').attr('height', '2');
+             $(this).attr('opacity', '0').attr('height', '0');
+           });
+
+           $('#Mark4').click(function() {
+              $('.Question4 #Question4, .Question4 .Reponse4').attr('opacity', '1').attr('height', '2');
+              $(this).attr('opacity', '0').attr('height', '0');
             });
 
+           $('#Mark5').click(function() {
+              $('.Question5 #Question5, .Question5 .Reponse5').attr('opacity', '1').attr('height', '2');
+              $(this).attr('opacity', '0').attr('height', '0');
+          });
+
+
+
        });
 
 
-        $('#div1').mouseup(function(){
-            $('#box1').show();
-            $('#overlay').show();
-        });
-
-        $('#div2').mouseup(function(){
-            $('#box2').show();
-            $('#overlay').show();
-        });
-
-        $('#div1').mousedown(function(){
-            $('#box1').hide();
-            //$('#box2').hide();
-            //$('#overlay').hide();
-        });
-
-        $('#div2').mousedown(function(){
-            $('#box2').hide();
-            //$('#box2').hide();
-            //$('#overlay').hide();
-        });
-
-        $('#close1').click(function(){
-          $( "#erreur1" ).hide();
-        });
-
-        $('#close2').click(function(){
-          $( "#erreur2" ).hide();
-        });
-  });
     </script>
 
-</a-scene> 
+</a-scene>
  </body>
  </html>

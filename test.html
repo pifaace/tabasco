@@ -1,0 +1,107 @@
+<!DOCTYPE HTML5>
+<html>
+
+<head>
+    <!--<script src="js/aframe.min.js"></script>-->
+    <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
+    <script src="js/aframe-animation-component.js"></script>
+    <script src="js/aframe-event-set-component.js"></script>
+    <script src="js/aframe-layout-component.js"></script>
+    <script src="js/aframe-template-component.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://rawgit.com/oscarmarinmiro/aframe-video-controls/master/dist/aframe-video-controls.min.js"></script>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <a-scene>
+        <a-assets>
+            <video id="video" src="./files/360_0019_Stitch_YHCC.mp4" webkit-playsinline crossOrigin="anonymous" autoplay="true" loop="true" />
+            <img id="Question" src="img/Question.png">
+            <img id="Reponse1" src="img/Reponse1.png">
+            <img id="Reponse2" src="img/Reponse2.png">
+            <img id="Reponse3" src="img/Reponse3.png">
+            <img id="Bg" src="files/360_0107_Stitch_XHC.JPG">
+            <img id="MarkQuestion" src="img/MarkQuestion.png">
+        </a-assets>
+
+        <a-videosphere src="#video" id="video_fond" webkit-playsinline></a-videosphere>
+
+        <a-entity class="Question-Wrapper">
+            <a-image src="#MarkQuestion" opacity="1" position="0 1 -8" width="2" height="2" z-index="2999" id="Mark1" rotation="0 0 0"></a-image>
+
+            <a-entity class="Question1">
+                <a-image src="#Question" opacity="0" position="0 3 -8" width="10" height="0" z-index="3000" id="1" class="Question"></a-image>
+                <a-image src="#Reponse1" opacity="0" position="0 1 -8" width="10" height="0" z-index="3000" class="Reponse Reponse1 vrai"></a-image>
+                <a-image src="#Reponse2" opacity="0" position="0 -1 -8" width="10" height="0" z-index="3000" class="Reponse Reponse2 faux"></a-image>
+                <a-image src="#Reponse3" opacity="0" position="0 -3 -8" width="10" height="0" z-index="3000" class="Reponse Reponse3 faux"></a-image>
+            </a-entity>
+        </a-entity>
+
+        <a-entity class="Question-Wrapper">
+            <a-image src="#MarkQuestion" opacity="1" position="2 1 8" width="2" height="2" z-index="2999" id="Mark2" rotation="0 190 0"></a-image>
+
+            <a-entity class="Question2">
+                <a-image src="#Question" opacity="0" rotation="0 190 0" position="2 3 8" width="10" height="0" z-index="3000" id="2" class="Question"></a-image>
+                <a-image src="#Reponse1" opacity="0" rotation="0 190 0" position="2 1 8" width="10" height="0" z-index="3000" class="Reponse Reponse1 vrai"></a-image>
+                <a-image src="#Reponse2" opacity="0" rotation="0 190 0" position="2 -1 8" width="10" height="0" z-index="3000" class="Reponse Reponse2 faux"></a-image>
+                <a-image src="#Reponse3" opacity="0" rotation="0 190 0" position="2 -3 8" width="10" height="0" z-index="3000" class="Reponse Reponse3 faux"></a-image>
+            </a-entity>
+        </a-entity>
+
+        <a-entity class="Question-Wrapper">
+            <a-image src="#MarkQuestion" opacity="1" position="-9 4 -8" width="2" height="2" z-index="2999" id="Mark3" rotation="20 40 0"></a-image>
+
+            <a-entity class="Question3">
+                <a-image src="#Question" opacity="0" rotation="0 40 0" position="-9 4 -6" width="10" height="0" z-index="3000" id="3" class="Question"></a-image>
+                <a-image src="#Reponse1" opacity="0" rotation="0 40 0" position="-9 2 -6" width="10" height="0" z-index="3000" class="Reponse Reponse1 vrai"></a-image>
+                <a-image src="#Reponse2" opacity="0" rotation="0 40 0" position="-9 0 -6" width="10" height="0" z-index="3000" class="Reponse Reponse2 faux"></a-image>
+                <a-image src="#Reponse3" opacity="0" rotation="0 40 0" position="-9 -2 -6" width="10" height="0" z-index="3000" class="Reponse Reponse3 faux"></a-image>
+            </a-entity>
+        </a-entity>
+
+        <!-- Camera + cursor. -->
+        <a-entity camera look-controls>
+            <a-cursor id="cursor" animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500" event-set__1="_event: mouseenter; color: red" event-set__2="_event: mouseleave; color: red" raycaster="objects: .link" color="white"></a-cursor>
+        </a-entity>
+
+    </a-scene>
+</body>
+
+<script>
+    $(document).ready(function() {
+        var imgSrc;
+        $('.Reponse').click(function() {
+            imgSrc = $('.Reponse').attr('src');
+            if ($(this).hasClass('vrai')) {
+                $(this).attr('src', 'img/Question.png');
+                $('.Question1 .Question, .Question1 .Reponse').animate({
+                    opacity: 0
+                }, 2000, function() {
+                    $(this).attr('opacity', '0').attr('height', '0')
+                });
+
+            } else {
+                $(this).attr('src', 'img/ReponseFausse.png');
+                $('.Question1 .Question, .Question1 .Reponse').attr('opacity', '0').attr('height', '0');
+            }
+
+        });
+        $('#Mark1').click(function() {
+            $('.Question1 .Question, .Question1 .Reponse').attr('opacity', '1').attr('height', '2');
+            $(this).attr('opacity', '0').attr('height', '0');
+        });
+        $('#Mark2').click(function() {
+            $('.Question2 .Question, .Question2 .Reponse').attr('opacity', '1').attr('height', '2');
+            $(this).attr('opacity', '0').attr('height', '0');
+        });
+        $('#Mark3').click(function() {
+            $('.Question3 .Question, .Question3 .Reponse').attr('opacity', '1').attr('height', '2');
+            $(this).attr('opacity', '0').attr('height', '0');
+        });
+
+    });
+</script>
+
+</html>
